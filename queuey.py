@@ -15,14 +15,16 @@ class Queuey:
         """ Adds an item to the queue, raising a TypeError if the wrong type of item is provided """
         # Your code goes here
         if not isinstance(item, self.data_type):
-            raise NotImplementedError("Something is wrong here...")
+            raise TypeError("Something is wrong here...")
         self.q.append(item)
         self.size += 1
+
     def dequeue(self):
         """ Removes the next item in the queue and returns it """
         # Your code goes here
         if self.size == 0:
-            raise IndexError("There is nothing but chickens!")
+            return None
+
         item = self.q[0]
         del self.q[0]
         self.size -= 1
@@ -45,6 +47,8 @@ class Queuey:
         """ Removes all items from the queue """
         # Your code goes here
         self.q.clear()
+        self.size = 0
+        
 
 def main():
     q = Queuey(float)
@@ -78,6 +82,8 @@ def main():
     print(f"Expected: 12.1, got: {q.dequeue()}")
     print(f"Expected: 17.21, got: {q.dequeue()}")
     print(f"Expected: None, got: {q.dequeue()}")
+
+    q.enqueue(8.4)
 
     q.clear()
     print(f"Expected: 0, got: {q.length()}")
